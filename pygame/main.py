@@ -27,12 +27,12 @@ menu_state = "main"
 
 #menu
 icon_menu = pygame.image.load('pygame/Assets/icon_menu.png')
-icon_menu_x = 850
+
 icon_menu_y = 30
 
 #title_menu
 title_menu = pygame.image.load('pygame/Assets/title_menu.png')
-title_menu_x = 720
+
 title_menu_y = 17
 
 #settings menu
@@ -55,10 +55,10 @@ gameplaytitle_x = 720
 gameplaytitle_y = 17
 
 #create button
-play_button = button.Button(520, 520, play_img, 1)
+play_button = button.Button((screen_width/2 - play_img.get_width()/2), 500, play_img, 1)
 levels_button = button.Button(520, 530, levels_img, 1)
 settings_button = button.Button(400, 400, settings_img, 1)
-quit_button = button.Button(400, 500, quit_img, 1)
+quit_button = button.Button((screen_width/2 - play_img.get_width()/2) - 7, 570, quit_img, 1)
 close_button = button.Button(450, 30 , close_img, 1)
 
 back_button = button.Button(450, 30 , back_img, 1)
@@ -75,6 +75,8 @@ color = (0,0,0)
 # count = 1
 #function menu
 def menu():
+    icon_menu_x = screen_width/2 - icon_menu.get_width()/2
+    title_menu_x = screen_width/2 - title_menu.get_width()/2
     screen.blit(icon_menu, (icon_menu_x, icon_menu_y))
     screen.blit(title_menu, (title_menu_x, title_menu_y))
 
@@ -149,6 +151,7 @@ active = False
 running = "menu"
 ans = ''
 while True:
+    screen_width = pygame.display.get_surface().get_width()
     # screen.fill((60, 72, 107))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -171,9 +174,9 @@ while True:
     if running == "menu":
         screen.fill((60, 72, 107))
         menu()
-        if settings_button.draw(screen):
-            # settings()
-            running = 'setting'
+        # if settings_button.draw(screen):
+        #     # settings()
+        #     running = 'setting'
         if quit_button.draw(screen):
             exit()
         if play_button.draw(screen):
@@ -186,11 +189,11 @@ while True:
     #     if quit_button.draw(screen):
     #         running = False
     # elif menu_state == "settings":
-    elif running == 'setting':
-        screen.fill((60, 72, 107))
-        if close_button.draw(screen):
-            # menu_state == "main"
-            running = 'menu'
+    # elif running == 'setting':
+    #     screen.fill((60, 72, 107))
+    #     if close_button.draw(screen):
+    #         # menu_state == "main"
+    #         running = 'menu'
     elif running == 'gameplay':
         screen.fill((240, 240, 240))
         gameplay(count)
