@@ -41,11 +41,15 @@ class Ui_MainWindow(object):
         self.EndLabel.setObjectName("EndLabel")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(180, 230, 93, 28))
+        self.count = 1
         self.pushButton.clicked.connect(self.result)
         self.pushButton.setObjectName("pushButton")
         
         self.lbl_hasil = QtWidgets.QLabel(self.centralwidget)
         self.lbl_hasil.move(200, 500)
+        
+        self.lbl_hint = QtWidgets.QLabel(self.centralwidget)
+        self.lbl_hint.move(200, 300)
         
         self.Answer = QtWidgets.QLineEdit(self.centralwidget)
         self.Answer.setGeometry(QtCore.QRect(30, 230, 113, 22))
@@ -67,16 +71,23 @@ class Ui_MainWindow(object):
         # lbl_hasil = QtWidgets.QLabel(win)
         ans = self.ladderLength(self.beginWord, self.endWord, self.wordList)
         # print(self.Answer.text())
-        if self.Answer.text() == str(ans):
+        if self.Answer.text() == str(len(ans)):
             # lbl_hasil = QtWidgets.QLabel(win)
             self.lbl_hasil.setText("betul")
+            self.count = 0
             # lbl_hasil.move(200, 200)
             # print('correct')
         else:
             # lbl_hasil = QtWidgets.QLabel(win)
+            self.count += 1
+            # if count < 2:
+            # for i in range (count):
+                    # hint = str(ans[i])
+            self.lbl_hint.setText("->".join(ans[:self.count]))
             self.lbl_hasil.setText("wrong")
             # lbl_hasil.move(200, 200)
             # print('wrong')
+        self.lbl_hint.adjustSize()
         self.lbl_hasil.adjustSize()
 
     def ladderLength(self, beginWord: str, endWord: str, wordList) -> int:
@@ -90,22 +101,24 @@ class Ui_MainWindow(object):
                 pattern = word[:j] + "*" + word[j + 1:]
                 nei[pattern].append(word)
                 
-        visit = set([beginWord])
+        visit = {beginWord: None}  # store the parent node of beginWord as None
         q = deque([beginWord])
-        res = 1
         while q:
-            for i in range(len(q)):
-                word = q.popleft()
-                if word == endWord:
-                    return res
-                for j in range(len(word)):
-                    pattern = word[:j] + "*" + word[j + 1:]
-                    for neiWord in nei[pattern]:
-                        if neiWord in nei[pattern]:
-                            visit.add(neiWord)
-                            q.append(neiWord)
-            res += 1
-        return 0
+            word = q.popleft()
+            if word == endWord:
+                # construct the path by backtracking from endWord to beginWord
+                path = [endWord]
+                while word != beginWord:
+                    path.append(visit[word])
+                    word = visit[word]
+                return path[::-1]  # reverse the path to get it from beginWord to endWord
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j + 1:]
+                for neiWord in nei[pattern]:
+                    if neiWord not in visit:
+                        visit[neiWord] = word  # store the parent node of neiWord
+                        q.append(neiWord)
+        return []
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
