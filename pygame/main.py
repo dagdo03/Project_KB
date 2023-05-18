@@ -315,7 +315,7 @@ while True:
         if ans == 'salah':
             screen.blit(ans_salah, ((input_rect.x + 285),(input_rect.y - 5)))
         if hint_button.draw(screen):
-            if count < len(wordList)/2:
+            if count < 3:
                 count += 1
             hint_cek = True
         if number < 5:    
