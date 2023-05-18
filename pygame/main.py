@@ -40,8 +40,14 @@ close_img = pygame.image.load('pygame/Assets/settings/exit_icon.png')
 close_img_x = 450
 close_img_y = 30
 
+closeEnd_img = pygame.image.load('pygame/Assets/gameplay/close_end.png')
+closeEnd_img_x = 450
+closeEnd_img_y = 30
+
 #load image for gameplay
 ans_benar = pygame.image.load('pygame/Assets/gameplay/correct.png')
+tamat_img = pygame.image.load('pygame/Assets/gameplay/congrat.png')
+tamat_img_x = (screen_width/2 - tamat_img.get_width()/2)
 
 #load button image
 play_img = pygame.image.load('pygame/Assets/play_icon.png').convert_alpha()
@@ -70,6 +76,7 @@ levels_button = button.Button(520, 530, levels_img, 1)
 settings_button = button.Button(400, 400, settings_img, 1)
 quit_button = button.Button((screen_width/2 - play_img.get_width()/2) - 7, 570, quit_img, 1)
 close_button = button.Button(450, 30 , close_img, 1)
+closeEnd_button = button.Button(450, 30 , closeEnd_img, 1)
 next_button = button.Button(screen_width - 200, screen_height - 150, next_img, 1)
 
 back_button = button.Button((screen_width-1150), 30 , back_img, 1)
@@ -123,7 +130,8 @@ def gameplay(count, number):
     screen.blit(text_surface, ((input_rect.x + 5), (input_rect.y + 5)))
     if len(user_text) == 0 and active == False:
         screen.blit(text_writeInp, ((input_rect.x + 5), (input_rect.y + 5)))
-    
+    if number == 5:
+        screen.blit(tamat_img, (tamat_img_x, 100))
     # if ans == 'benar':
     #     screen.blit(ans_benar, ((input_rect.x + 5), (input_rect.y + 200)))   
     #     if next_button.draw(screen):
@@ -267,6 +275,7 @@ while True:
                     endWord = "Break"
                     wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
                     wordPath = ladderLength(beginWord, endWord, wordList)
+                    
                 ans = ''
                 user_text = ''
                 # screen.fill((240, 240, 240))
@@ -279,15 +288,19 @@ while True:
             screen.blit(hint, ((input_rect.x + 5), (input_rect.y + 250)))
             ans_hint = base_font.render(("->".join(wordPath[:count])), True, (45, 60, 104))
             screen.blit(ans_hint, ((input_rect.x + 5), (input_rect.y + 285)))
-            
-        if submit_button.draw(screen):
-            if user_text == str(len(wordPath)):
-                ans = 'benar'
-                
-                    # number = number + 1
-                count = 1
-            elif user_text != str(len(wordPath)) and len(user_text) != 0:
-                if count < len(wordList)/2:
-                    count += 1
-                ans = 'salah'
+        if number < 5:    
+            if submit_button.draw(screen):
+                if user_text == str(len(wordPath)):
+                    ans = 'benar'
+                    
+                        # number = number + 1
+                    count = 1
+                elif user_text != str(len(wordPath)) and len(user_text) != 0:
+                    if count < len(wordList)/2:
+                        count += 1
+                    ans = 'salah'
+        else:
+            if closeEnd_button.draw(screen):
+    #         # menu_state == "main"
+                running = 'menu'
     pygame.display.update()
