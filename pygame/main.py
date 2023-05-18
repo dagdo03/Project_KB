@@ -204,7 +204,6 @@ while True:
                 elif event.key == pygame.K_RETURN:
                     if user_text == str(len(wordPath)):
                         ans = 'benar'
-                        
                         # number += 1
                         count = 1
                     elif user_text != str(len(wordPath)) and len(user_text) != 0:
@@ -269,6 +268,7 @@ while True:
                     wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
                     wordPath = ladderLength(beginWord, endWord, wordList)
                 ans = ''
+                user_text = ''
                 # screen.fill((240, 240, 240))
             count = 1
             # number = number + 1
@@ -283,6 +283,7 @@ while True:
         if submit_button.draw(screen):
             if user_text == str(len(wordPath)):
                 ans = 'benar'
+                
                     # number = number + 1
                 count = 1
             elif user_text != str(len(wordPath)) and len(user_text) != 0:
