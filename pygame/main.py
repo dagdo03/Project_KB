@@ -254,9 +254,9 @@ while True:
 
                 number += 1 
                 if number == 2:
-                    beginWord = "Lead"
-                    endWord = "Load"
-                    wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
+                    beginWord = "Ball"
+                    endWord = "Goat"
+                    wordList = ["Fall", "Bell", "Bail", "Belt", "Bolt", "Boat", "Goat"]
                     wordPath = ladderLength(beginWord, endWord, wordList)
                 elif number == 3:
                     beginWord = "Hand"
