@@ -15,7 +15,7 @@ screen_width, screen_height = info.current_w, info.current_h
 
 #Create the window
 screen = pygame.display.set_mode((screen_width - 10, screen_height - 50), pygame.RESIZABLE)
-
+surface = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA)
 #Create title of the game
 pygame.display.set_caption("Word Ladder")
 icon = pygame.image.load('pygame/Assets/icon.png')
@@ -87,7 +87,7 @@ user_text = ''
 writeInp_text = 'Write your answer here'
 
 #input
-# input_rect = pygame.Rect(200, 200, 280, 32)
+end_rect = pygame.Rect(0, 0, screen_width, screen_height)
 color = (0,0,0)
 
 # count = 1
@@ -131,6 +131,8 @@ def gameplay(count, number):
     if len(user_text) == 0 and active == False:
         screen.blit(text_writeInp, ((input_rect.x + 5), (input_rect.y + 5)))
     if number == 5:
+        pygame.draw.rect(surface, (0,0,0,100), end_rect)
+        screen.blit(surface, (0,0))
         screen.blit(tamat_img, (tamat_img_x, 100))
     # if ans == 'benar':
     #     screen.blit(ans_benar, ((input_rect.x + 5), (input_rect.y + 200)))   
