@@ -79,7 +79,7 @@ quit_button = button.Button((screen_width/2 - play_img.get_width()/2) - 7, 570, 
 close_button = button.Button(450, 30 , close_img, 1)
 closeEnd_button = button.Button(tamat_img_x + 15, 113 , closeEnd_img, 1)
 next_button = button.Button(screen_width - 200, screen_height - 150, next_img, 1)
-hint_button = button.Button(screen_width - 200, screen_height - 1050, hint_img, 1)
+hint_button = button.Button(screen_width - screen_width / 8, screen_height/25, hint_img, 1)
 
 back_button = button.Button(screen_width / 8, screen_height / 25 , back_img, 1)
 submit_button = button.Button((screen_width/2 - submit_img.get_width()/2), screen_height/3, submit_img, 1)
