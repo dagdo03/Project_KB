@@ -239,6 +239,7 @@ while True:
             exit()
         if play_button.draw(screen):
             number = 1
+            count = 1
             if number == 1 :
                 beginWord = "Lead"
                 endWord = "Gold"
