@@ -1,4 +1,3 @@
-Kelompok A08 :
 | Nama | NRP |
 | ---------------------- | ---------- |
 | Dafarel Fatih Wirayudha | 5025211120 |
