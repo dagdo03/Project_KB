@@ -220,27 +220,62 @@ def selectLevel():
     screen.blit(bg_level, (bg_level_x, bg_level_y))
     screen.blit(close_level_img, (close_level_x, close_level_y))
     
-def set_level():
-    if number == 1 :
-        beginWord = "Lead"
-        endWord = "Gold"
-        wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
-        wordPath = ladderLength(beginWord, endWord, wordList)
-    if number == 2:
-        beginWord = "Ball"
-        endWord = "Goat"
-        wordList = ["Fall", "Bell", "Bail", "Belt", "Bolt", "Boat", "Goat"]
-        wordPath = ladderLength(beginWord, endWord, wordList)
-    elif number == 3:
-        beginWord = "Hand"
-        endWord = "Font"
-        wordList = ["Band", "Bane", "Bond", "Boat", "Fond", "Foot", "Font"]
-        wordPath = ladderLength(beginWord, endWord, wordList)
-    elif number == 4:
-        beginWord = "Wheat"
-        endWord = "Break"
-        wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
-        wordPath = ladderLength(beginWord, endWord, wordList)
+# def set_level():
+#     if number == 1 :
+#         beginWord = "Tua"
+#         endWord = "Tau"
+#         wordList = ["Tau", "Dia", "Dua", "Dus", "Jus", "Tas", "Tas", "Jas"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     if number == 2:
+#         beginWord = "Bola"
+#         endWord = "Duka"
+#         wordList = ["Bolu", "Boku", "Bulu", "Duku", "Buka", "Dulu", "Duka"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 3:
+#         beginWord = "Hari"
+#         endWord = "Sore"
+#         wordList = ["Haru", "Dari", "Jari", "Sori", "Jadi", "Dori", "Hore", "Sore"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 4:
+#         beginWord = "Bala"
+#         endWord = "Gila"
+#         wordList = ["Bali", "Pala", "Gali", "Jala", "Java", "Gala", "Hala", "Gila"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 5:
+#         beginWord = "Budi"
+#         endWord = "Babi"
+#         wordList = ["Buda", "Jala", "Gali", "Bada", "Badi", "Gala", "Hala", "Babi"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 6:
+#         beginWord = "Susu"
+#         endWord = "Bolu"
+#         wordList = ["Sudu", "Budu", "Badi", "Bada", "Badu", "Bala", "Balu", "Bolu"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 7:
+#         beginWord = "Sore"
+#         endWord = "Kopi"
+#         wordList = ["Sori", "Topi", "Gori", "Sopi", "Sari", "Tore", "Hore", "Kopi"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 8:
+#         beginWord = "Sahur"
+#         endWord = "Bakar"
+#         wordList = ["Sahir", "Sihir", "Sikir", "Sikil", "Sikit", "Sikat", "Sakat", "Bakat", "Bakar"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 9:
+#         beginWord = "Sakit"
+#         endWord = "Sehat"
+#         wordList = ["Sikit", "Sikat", "Sakal", "Sekar", "Sikut", "Sekat", "Sakat", "Sukar", "Sehat"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 10:
+#         beginWord = "Hutan"
+#         endWord = "Bakar"
+#         wordList = ["Kutan", "Kapan", "Katan", "Batan", "Bukan", "Batat", "Bakat", "Bukat", "Bakar"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
+#     elif number == 11:
+#         beginWord = ""
+#         endWord = "Gila"
+#         wordList = ["Bali", "Pala", "Gali", "Jala", "Java", "Gala", "Hala", "Gila"]
+#         wordPath = ladderLength(beginWord, endWord, wordList)
 
 def ladderLength(beginWord: str, endWord: str, wordList):
     if endWord not in wordList:
@@ -322,9 +357,9 @@ while True:
             number = 1
             count = 1
             if number == 1 :
-                beginWord = "Lead"
-                endWord = "Gold"
-                wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
+                beginWord = "Tua"
+                endWord = "Tau"
+                wordList = ["Tau", "Dia", "Dua", "Dus", "Jus", "Tas", "Tas", "Jas"]
                 wordPath = ladderLength(beginWord, endWord, wordList)
             running = 'gameplay'
             
@@ -367,25 +402,75 @@ while True:
                 #     wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
                 #     wordPath = ladderLength(beginWord, endWord, wordList)
                 if number == 2:
-                    beginWord = "Ball"
-                    endWord = "Goat"
-                    wordList = ["Fall", "Bell", "Bail", "Belt", "Bolt", "Boat", "Goat"]
-                    wordPath = ladderLength(beginWord, endWord, wordList)
+                        beginWord = "Bola"
+                        endWord = "Duka"
+                        wordList = ["Bolu", "Boku", "Bulu", "Duku", "Buka", "Dulu", "Duka"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
                 elif number == 3:
-                    beginWord = "Hand"
-                    endWord = "Font"
-                    wordList = ["Band", "Bane", "Bond", "Boat", "Fond", "Foot", "Font"]
-                    wordPath = ladderLength(beginWord, endWord, wordList)
+                        beginWord = "Hari"
+                        endWord = "Sore"
+                        wordList = ["Haru", "Dari", "Jari", "Sori", "Jadi", "Dori", "Hore", "Sore"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
                 elif number == 4:
-                    beginWord = "Wheat"
-                    endWord = "Break"
-                    wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
-                    wordPath = ladderLength(beginWord, endWord, wordList)
+                        beginWord = "Bala"
+                        endWord = "Gila"
+                        wordList = ["Bali", "Pala", "Gali", "Jala", "Java", "Gala", "Hala", "Gila"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
                 elif number == 5:
-                    beginWord = "Wheat"
-                    endWord = "Break"
-                    wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
-                    wordPath = ladderLength(beginWord, endWord, wordList)
+                        beginWord = "Budi"
+                        endWord = "Babi"
+                        wordList = ["Buda", "Jala", "Gali", "Bada", "Badi", "Gala", "Hala", "Babi"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 6:
+                        beginWord = "Susu"
+                        endWord = "Bolu"
+                        wordList = ["Sudu", "Budu", "Badi", "Bada", "Badu", "Bala", "Balu", "Bolu"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 7:
+                        beginWord = "Sore"
+                        endWord = "Kopi"
+                        wordList = ["Sori", "Topi", "Gori", "Sopi", "Sari", "Tore", "Hore", "Kopi"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 8:
+                        beginWord = "Sahur"
+                        endWord = "Bakar"
+                        wordList = ["Sahir", "Sihir", "Sikir", "Sikil", "Sikit", "Sikat", "Sakat", "Bakat", "Bakar"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 9:
+                        beginWord = "Sakit"
+                        endWord = "Sehat"
+                        wordList = ["Sikit", "Sikat", "Sakal", "Sekar", "Sikut", "Sekat", "Sakat", "Sukar", "Sehat"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 10:
+                        beginWord = "Hutan"
+                        endWord = "Bakar"
+                        wordList = ["Kutan", "Kapan", "Katan", "Batan", "Bukan", "Batat", "Bakat", "Bukat", "Bakar"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 11:
+                        beginWord = "Halus"
+                        endWord = "Kasar"
+                        wordList = ["Calus", "Kalus", "Kapus", "Kasus", "Kapur", "Kasur", "Kapar", "Kapir", "Kasar"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 12:
+                        beginWord = "Katun"
+                        endWord = "Kapas"
+                        wordList = ["Kapar", "Lapar", "Lapas", "Katan", "Kapur", "Kapan", "Kapon", "Kapar", "Kapas"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 13:
+                        beginWord = "Kurus"
+                        endWord = "Gemuk"
+                        wordList = ["Kupur", "Kudus", "Kuduk", "Keduk", "Kepar", "Kepuk", "Kepak", "Gepuk", "Gemuk"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 14:
+                        beginWord = "Lunak"
+                        endWord = "Keras"
+                        wordList = ["Lunar", "Lunas", "Luwak", "Lumas", "Limas", "Lemas", "Kemas", "Lepek", "Keras"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                elif number == 15:
+                        beginWord = "Bakul"
+                        endWord = "Botol"
+                        wordList = ["Bakal", "Batal", "Bolok", "Batas", "Betas", "Betak", "Botak", "Botok", "Botol"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
                 # if number == 5:
                 #     beginWord = "Lead"
                 #     endWord = "Gold"
@@ -404,7 +489,7 @@ while True:
         if hint_button.draw(screen):
             if count < 3:
                 count += 1
-            hint_cek = True
+            hint_cek = True 
         if number < 5:    
             if submit_button.draw(screen):
                 if user_text == str(len(wordPath)):
@@ -501,6 +586,26 @@ while True:
                         beginWord = ""
                         endWord = "Gila"
                         wordList = ["Bali", "Pala", "Gali", "Jala", "Java", "Gala", "Hala", "Gila"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 12:
+                        beginWord = "Katun"
+                        endWord = "Kapas"
+                        wordList = ["Kapar", "Lapar", "Lapas", "Katan", "Kapur", "Kapan", "Kapon", "Kapar", "Kapas"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 13:
+                        beginWord = "Kurus"
+                        endWord = "Gemuk"
+                        wordList = ["Kupur", "Kudus", "Kuduk", "Keduk", "Kepar", "Kepuk", "Kepak", "Gepuk", "Gemuk"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 14:
+                        beginWord = "Lunak"
+                        endWord = "Keras"
+                        wordList = ["Lunar", "Lunas", "Luwak", "Lumas", "Limas", "Lemas", "Kemas", "Lepek", "Keras"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 15:
+                        beginWord = "Bakul"
+                        endWord = "Botol"
+                        wordList = ["Bakal", "Batal", "Bolok", "Batas", "Betas", "Betak", "Botak", "Botok", "Botol"]
                         wordPath = ladderLength(beginWord, endWord, wordList)
                     count = 1
                     running = "gameplay"
