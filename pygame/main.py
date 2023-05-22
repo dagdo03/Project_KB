@@ -67,10 +67,15 @@ gameplaytitle_y = 17
 next_img = pygame.image.load('pygame/Assets/gameplay/next.png')
 
 #load wordlistlvl 1 
-lvl1_img = pygame.image.load('pygame/Assets/gameplay/levels/level1.png')
-lvl2_img = pygame.image.load('pygame/Assets/gameplay/levels/level2.png')
-lvl3_img = pygame.image.load('pygame/Assets/gameplay/levels/level3.png')
-lvl4_img = pygame.image.load('pygame/Assets/gameplay/levels/level4.png')
+# lvl1_img = pygame.image.load('pygame/Assets/gameplay/levels/level1.png')
+# lvl2_img = pygame.image.load('pygame/Assets/gameplay/levels/level2.png')
+# lvl3_img = pygame.image.load('pygame/Assets/gameplay/levels/level3.png')
+# lvl4_img = pygame.image.load('pygame/Assets/gameplay/levels/level4.png')
+lvl_img = {}
+for i in range (1,5):
+    level = 'lvl' + str(i) + '_img'
+    link = 'pygame/Assets/gameplay/levels/level' + str(i) + '.png'
+    lvl_img[level] = pygame.image.load(link)
 #create button
 play_button = button.Button((screen_width/2 - play_img.get_width()/2), 500, play_img, 1)
 levels_img = pygame.image.load('pygame/Assets/levels_icon.png').convert_alpha()
@@ -118,14 +123,18 @@ def gameplay(count, number):
     menu_state == "gameplay"
     # input_rect = pygame.Rect(screen_width/2-140, 200, 280, 32)
     pygame.draw.rect(screen, color, input_rect, 2)
-    if number == 1:
-        screen.blit(lvl1_img, (screen_width/9, screen_height/6))
-    elif number == 2:
-        screen.blit(lvl2_img, (screen_width/9, screen_height/6))
-    elif number == 3:
-        screen.blit(lvl3_img, (screen_width/9, screen_height/6))
-    elif number == 4:
-        screen.blit(lvl4_img, (screen_width/9, screen_height/6))
+    # if number == 1:
+    #     screen.blit(lvl1_img, (screen_width/9, screen_height/6))
+    # elif number == 2:
+    #     screen.blit(lvl2_img, (screen_width/9, screen_height/6))
+    # elif number == 3:
+    #     screen.blit(lvl3_img, (screen_width/9, screen_height/6))
+    # elif number == 4:
+    #     screen.blit(lvl4_img, (screen_width/9, screen_height/6))
+    for i in range(1, 5):
+        if number == i:
+            level = 'lvl' + str(i) + '_img'
+            screen.blit(lvl_img[level], (screen_width/9, screen_height/6))
     screen.blit(gameplaytitle_img, (gameplaytitle_x, gameplaytitle_y))
     text_surface = base_font.render(user_text, True, (45, 60, 104))
     text_writeInp = base_font.render(writeInp_text, True, (45, 60, 104))
