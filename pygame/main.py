@@ -51,7 +51,7 @@ tamat_img_x = (screen_width/2 - tamat_img.get_width()/2)
 
 #load button image
 play_img = pygame.image.load('pygame/Assets/play_icon.png').convert_alpha()
-levels_img = pygame.image.load('pygame/Assets/levels_icon.png').convert_alpha()
+
 settings_img = pygame.image.load('pygame/Assets/settings_icon.png').convert_alpha()
 quit_img = pygame.image.load('pygame/Assets/quit_icon.png').convert_alpha()
 
@@ -73,20 +73,21 @@ lvl3_img = pygame.image.load('pygame/Assets/gameplay/levels/level3.png')
 lvl4_img = pygame.image.load('pygame/Assets/gameplay/levels/level4.png')
 #create button
 play_button = button.Button((screen_width/2 - play_img.get_width()/2), 500, play_img, 1)
-levels_button = button.Button(520, 530, levels_img, 1)
+levels_img = pygame.image.load('pygame/Assets/levels_icon.png').convert_alpha()
+levels_button = button.Button((screen_width/2 - levels_img.get_width()/2), 570, levels_img, 1)
 settings_button = button.Button(400, 400, settings_img, 1)
-quit_button = button.Button((screen_width/2 - play_img.get_width()/2) - 7, 570, quit_img, 1)
+quit_button = button.Button((screen_width/2 - play_img.get_width()/2) - 5, 640, quit_img, 1)
 close_button = button.Button(450, 30 , close_img, 1)
 closeEnd_button = button.Button(tamat_img_x + 15, 113 , closeEnd_img, 1)
-next_button = button.Button(screen_width - 200, screen_height - 150, next_img, 1)
+next_button = button.Button(screen_width - 350, screen_height - 150, next_img, 1)
 hint_button = button.Button(screen_width - screen_width / 8, screen_height/25, hint_img, 1)
 
 back_button = button.Button(screen_width / 8, screen_height / 25 , back_img, 1)
 submit_button = button.Button((screen_width/2 - submit_img.get_width()/2), screen_height/3, submit_img, 1)
 #text
-base_font = pygame.font.Font(None,32)
+base_font = pygame.font.Font(None,30)
 user_text = ''
-writeInp_text = 'Write your answer here'
+writeInp_text = 'Ketik Angka di sini'
 
 #input
 end_rect = pygame.Rect(0, 0, screen_width, screen_height)
@@ -160,10 +161,35 @@ def gameplay(count, number):
     #     screen.blit(ans_hint, ((input_rect.x + 5), (input_rect.y + 285)))
     # screen.fill((240, 240, 240))
 
+#import button select level
+title_lvl_img = pygame.image.load('pygame/Assets/gameplay/selectlevel/title.png')
+title_lvl_img_x = (screen_width/2 - title_lvl_img.get_width()/2)
+title_lvl_img_y = screen_height / 20
 
+close_level_img = pygame.image.load('pygame/Assets/gameplay/selectlevel/close.png')
+close_level_x = screen_width / 15
+close_level_y = screen_height / 20
+close_level_button = button.Button(close_level_x, close_level_y, close_level_img, 1)
 
+bg_level = pygame.image.load('pygame/Assets/gameplay/selectlevel/background.png').convert_alpha()
+bg_level_x = (screen_width/2 - bg_level.get_width()/2)
+bg_level_y = screen_height / 2 - bg_level.get_height()/2
+
+select_level_1 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level1.png').convert_alpha()
+select_level_1_x = bg_level.get_width() / 3.5
+select_level_1_y = bg_level.get_height() /3
+select_level_1_button = button.Button(select_level_1_x, select_level_1_y, select_level_1, 1)
+select_level_2 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level2.png').convert_alpha()
+select_level_2_x = bg_level.get_width() / 2.8
+select_level_2_y = bg_level.get_height() / 3
+select_level_2_button = button.Button(select_level_2_x, select_level_2_y, select_level_2, 1)
 #BFS
-
+def selectLevel():
+    menu_state = "levels"
+    screen.blit(title_lvl_img, (title_lvl_img_x, title_lvl_img_y))
+    screen.blit(bg_level, (bg_level_x, bg_level_y))
+    screen.blit(close_level_img, (close_level_x, close_level_y))
+    
 
 def ladderLength(beginWord: str, endWord: str, wordList):
     if endWord not in wordList:
@@ -237,6 +263,8 @@ while True:
         #     running = 'setting'
         if quit_button.draw(screen):
             exit()
+        if levels_button.draw(screen):
+            running = "levels"
         if play_button.draw(screen):
             number = 1
             count = 1
@@ -334,4 +362,20 @@ while True:
                 number = 1
     #         # menu_state == "main"
                 running = 'menu'
+    elif running == "levels":
+        screen.fill((33, 42, 62))
+        selectLevel()
+        
+        if close_level_button.draw(screen):
+                number = 1
+    #         # menu_state == "main"
+                running = 'menu'
+        if select_level_1_button.draw(screen):
+            number = 1
+            count = 1
+            running = "gameplay"
+        elif select_level_2_button.draw(screen):
+            number = 2
+            count = 1
+            running = "gameplay"
     pygame.display.update()
