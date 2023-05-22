@@ -65,13 +65,18 @@ gameplaytitle_y = 17
 
 next_img = pygame.image.load('pygame/Assets/gameplay/next.png')
 
+gameplay_bg = pygame.image.load('pygame/Assets/gameplay/background.png').convert_alpha()
+gameplay_bg = pygame.transform.scale(gameplay_bg, (1750, 1030))
+gameplay_bg_x = (screen_width/2 - gameplay_bg.get_width()/2)
+gameplay_bg_y = screen_height / 2 - gameplay_bg.get_height()/2
+
 #load wordlistlvl 1 
 # lvl1_img = pygame.image.load('pygame/Assets/gameplay/levels/level1.png')
 # lvl2_img = pygame.image.load('pygame/Assets/gameplay/levels/level2.png')
 # lvl3_img = pygame.image.load('pygame/Assets/gameplay/levels/level3.png')
 # lvl4_img = pygame.image.load('pygame/Assets/gameplay/levels/level4.png')
 lvl_img = {}
-for i in range (1,5):
+for i in range (1,16):
     level = 'lvl' + str(i) + '_img'
     link = 'pygame/Assets/gameplay/levels/level' + str(i) + '.png'
     lvl_img[level] = pygame.image.load(link)
@@ -130,7 +135,7 @@ def gameplay(count, number):
     #     screen.blit(lvl3_img, (screen_width/9, screen_height/6))
     # elif number == 4:
     #     screen.blit(lvl4_img, (screen_width/9, screen_height/6))
-    for i in range(1, 5):
+    for i in range(1, 16):
         if number == i:
             level = 'lvl' + str(i) + '_img'
             screen.blit(lvl_img[level], (screen_width/9, screen_height/6))
@@ -147,7 +152,7 @@ def gameplay(count, number):
         screen.blit(hint, ((input_rect.x + 5), (input_rect.y + 250)))
         ans_hint = base_font.render(("->".join(wordPath[:count])), True, (45, 60, 104))
         screen.blit(ans_hint, ((input_rect.x + 5), (input_rect.y + 285)))
-    if number == 5:
+    if number == 16:
         pygame.draw.rect(surface, (0,0,0,100), end_rect)
         screen.blit(surface, (0,0))
         screen.blit(tamat_img, (tamat_img_x, 100))
@@ -377,7 +382,8 @@ while True:
     #         running = 'menu'
     elif running == 'gameplay':
         # number = 1
-        screen.fill((240, 240, 240))
+        screen.fill((60, 72, 107))
+        screen.blit(gameplay_bg, (gameplay_bg_x, gameplay_bg_y))
         if back_button.draw(screen):
                 ans = ''
                 hint_cek = False
@@ -490,7 +496,7 @@ while True:
             if count < 3:
                 count += 1
             hint_cek = True 
-        if number < 5:    
+        if number < 16:    
             if submit_button.draw(screen):
                 if user_text == str(len(wordPath)):
                     ans = 'benar'
