@@ -175,14 +175,33 @@ bg_level = pygame.image.load('pygame/Assets/gameplay/selectlevel/background.png'
 bg_level_x = (screen_width/2 - bg_level.get_width()/2)
 bg_level_y = screen_height / 2 - bg_level.get_height()/2
 
-select_level_1 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level1.png').convert_alpha()
-select_level_1_x = bg_level.get_width() / 3.5
-select_level_1_y = bg_level.get_height() /3
-select_level_1_button = button.Button(select_level_1_x, select_level_1_y, select_level_1, 1)
-select_level_2 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level2.png').convert_alpha()
-select_level_2_x = bg_level.get_width() / 2.8
-select_level_2_y = bg_level.get_height() / 3
-select_level_2_button = button.Button(select_level_2_x, select_level_2_y, select_level_2, 1)
+# select_level_1 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level1.png').convert_alpha()
+# select_level_1_x = bg_level.get_width() / 3.5
+# select_level_1_y = bg_level.get_height() /3
+# select_level_1_button = button.Button(select_level_1_x, select_level_1_y, select_level_1, 1)
+# select_level_2 = pygame.image.load('pygame/Assets/gameplay/selectlevel/level2.png').convert_alpha()
+# select_level_2_x = bg_level.get_width() / 2.8
+# select_level_2_y = bg_level.get_height() / 3
+# select_level_2_button = button.Button(select_level_2_x, select_level_2_y, select_level_2, 1)
+
+pos_x = 3.5
+pos_y = 3
+select_level = {}
+select_level_x = {}
+select_level_y = {}
+select_level_button = {}
+for i in range(1, 3):
+    var = "select_level_" + str(i)
+    link = 'pygame/Assets/gameplay/selectlevel/level' + str(i) + '.png'
+    select_level[var] = pygame.image.load(link).convert_alpha()
+    var_x = var + '_x'
+    var_y = var + '_y'
+    var_button = var + '_button'
+    select_level_x[var_x] = bg_level.get_width() / pos_x
+    select_level_y[var_y] = bg_level.get_height() / pos_y
+    select_level_button[var_button] = button.Button(select_level_x[var_x], select_level_y[var_y], select_level[var], 1)
+    pos_x -= 0.7
+    
 #BFS
 def selectLevel():
     menu_state = "levels"
@@ -190,6 +209,27 @@ def selectLevel():
     screen.blit(bg_level, (bg_level_x, bg_level_y))
     screen.blit(close_level_img, (close_level_x, close_level_y))
     
+def set_level():
+    if number == 1 :
+        beginWord = "Lead"
+        endWord = "Gold"
+        wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
+        wordPath = ladderLength(beginWord, endWord, wordList)
+    if number == 2:
+        beginWord = "Ball"
+        endWord = "Goat"
+        wordList = ["Fall", "Bell", "Bail", "Belt", "Bolt", "Boat", "Goat"]
+        wordPath = ladderLength(beginWord, endWord, wordList)
+    elif number == 3:
+        beginWord = "Hand"
+        endWord = "Font"
+        wordList = ["Band", "Bane", "Bond", "Boat", "Fond", "Foot", "Font"]
+        wordPath = ladderLength(beginWord, endWord, wordList)
+    elif number == 4:
+        beginWord = "Wheat"
+        endWord = "Break"
+        wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
+        wordPath = ladderLength(beginWord, endWord, wordList)
 
 def ladderLength(beginWord: str, endWord: str, wordList):
     if endWord not in wordList:
@@ -370,13 +410,43 @@ while True:
                 number = 1
     #         # menu_state == "main"
                 running = 'menu'
-        if select_level_1_button.draw(screen):
-            number = 1
-            count = 1
-            running = "gameplay"
-        elif select_level_2_button.draw(screen):
-            if level >= 2:
-                number = 2
-                count = 1
-                running = "gameplay"
+        # if select_level_1_button.draw(screen):
+        #     number = 1
+        #     count = 1
+        #     running = "gameplay"
+        # elif select_level_2_button.draw(screen):
+        #     if level >= 2:
+        #         number = 2
+        #         count = 1
+        #         running = "gameplay"
+        for i in range(1, 3):
+            tombol = "select_level_" + str(i) + "_button"
+            # select_level_button[tombol]
+            if select_level_button[tombol].draw(screen):
+                if level >= i:
+                    number = i
+                    # set_level()
+                    if number == 1 :
+                        beginWord = "Lead"
+                        endWord = "Gold"
+                        wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    if number == 2:
+                        beginWord = "Ball"
+                        endWord = "Goat"
+                        wordList = ["Fall", "Bell", "Bail", "Belt", "Bolt", "Boat", "Goat"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 3:
+                        beginWord = "Hand"
+                        endWord = "Font"
+                        wordList = ["Band", "Bane", "Bond", "Boat", "Fond", "Foot", "Font"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    elif number == 4:
+                        beginWord = "Wheat"
+                        endWord = "Break"
+                        wordList = ["Wheel", "Cheat", "Clear", "Cleat", "Bleat", "Bread", "Bleak", "Bleed", "Break"]
+                        wordPath = ladderLength(beginWord, endWord, wordList)
+                    count = 1
+                    running = "gameplay"
+            
     pygame.display.update()
