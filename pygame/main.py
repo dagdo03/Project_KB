@@ -45,6 +45,7 @@ closeEnd_img_y = 30
 ans_benar = pygame.image.load('pygame/Assets/gameplay/correct.png')
 ans_salah = pygame.image.load('pygame/Assets/gameplay/wrong.png')
 tamat_img = pygame.image.load('pygame/Assets/gameplay/congrat.png')
+lock_img = pygame.image.load('pygame/Assets/gameplay/selectlevel/locked_level.png')
 tamat_img_x = (screen_width/2 - tamat_img.get_width()/2)
 
 #load button image
@@ -197,11 +198,10 @@ select_level = {}
 select_level_x = {}
 select_level_y = {}
 select_level_button = {}
-for i in range(1, 15):
-    if i == 8:
-        pos_y = pos_y + 70
-    if i == 0:
-        continue
+for i in range(1, 16):
+    if i == 10:
+        pos_y += 140
+        pos_x = bg_level.get_width() / 3.5
     var = "select_level_" + str(i)
     link = 'pygame/Assets/gameplay/selectlevel/level' + str(i) + '.png'
     select_level[var] = pygame.image.load(link).convert_alpha()
@@ -210,8 +210,7 @@ for i in range(1, 15):
     var_button = var + '_button'
     select_level_x[var_x] = pos_x
     select_level_y[var_y] = pos_y
-    if i < 9:
-        pos_x += 140
+    pos_x += 140
     select_level_button[var_button] = button.Button(select_level_x[var_x], select_level_y[var_y], select_level[var], 1.3)
     
 #BFS
@@ -278,6 +277,8 @@ def ladderLength(beginWord: str, endWord: str, wordList):
 #     endWord = "Gold"
 #     wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
 #     wordPath = ladderLength(beginWord, endWord, wordList)
+# pos_lock_x = bg_level.get_width() / 3.5
+# pos_lock_y = bg_level.get_height() / 3
 while True:
     screen_width = pygame.display.get_surface().get_width()
     input_rect = pygame.Rect(screen_width/2-140, 200, 280, 32)
@@ -417,7 +418,10 @@ while True:
     elif running == "levels":
         screen.fill((33, 42, 62))
         selectLevel()
-        
+        # for i in range(1, 15):
+        #     if i < level:
+        #         continue
+        #     screen.blit(lock_img, (pos_lock_x, pos_lock_y))
         if close_level_button.draw(screen):
                 number = 1
     #         # menu_state == "main"
@@ -431,7 +435,7 @@ while True:
         #         number = 2
         #         count = 1
         #         running = "gameplay"
-        for i in range(1, 15):
+        for i in range(1, 16):
             tombol = "select_level_" + str(i) + "_button"
             # select_level_button[tombol]
             if select_level_button[tombol].draw(screen):
@@ -460,5 +464,16 @@ while True:
                         wordPath = ladderLength(beginWord, endWord, wordList)
                     count = 1
                     running = "gameplay"
+        pos_lock_x = bg_level.get_width() / 3.5
+        pos_lock_y = bg_level.get_height() / 3
+        for i in range(1, 16):
+            if i == 10:
+                pos_lock_y += 140
+                pos_lock_x = bg_level.get_width() / 3.5
+            elif i != 1:
+                pos_lock_x += 140
+            if i <= level:
+                continue
+            screen.blit(lock_img, (pos_lock_x, pos_lock_y))
             
     pygame.display.update()
