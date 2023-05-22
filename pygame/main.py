@@ -7,8 +7,6 @@ from collections import deque
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 #initialize
 pygame.init()
-
-
 info = pygame.display.Info()
 screen_width, screen_height = info.current_w, info.current_h
 
@@ -193,23 +191,28 @@ bg_level_y = screen_height / 2 - bg_level.get_height()/2
 # select_level_2_y = bg_level.get_height() / 3
 # select_level_2_button = button.Button(select_level_2_x, select_level_2_y, select_level_2, 1)
 
-pos_x = 3.5
-pos_y = 3
+pos_x = bg_level.get_width() / 3.5
+pos_y = bg_level.get_height() / 3
 select_level = {}
 select_level_x = {}
 select_level_y = {}
 select_level_button = {}
-for i in range(1, 3):
+for i in range(1, 15):
+    if i == 8:
+        pos_y = pos_y + 70
+    if i == 0:
+        continue
     var = "select_level_" + str(i)
     link = 'pygame/Assets/gameplay/selectlevel/level' + str(i) + '.png'
     select_level[var] = pygame.image.load(link).convert_alpha()
     var_x = var + '_x'
     var_y = var + '_y'
     var_button = var + '_button'
-    select_level_x[var_x] = bg_level.get_width() / pos_x
-    select_level_y[var_y] = bg_level.get_height() / pos_y
-    select_level_button[var_button] = button.Button(select_level_x[var_x], select_level_y[var_y], select_level[var], 1)
-    pos_x -= 0.7
+    select_level_x[var_x] = pos_x
+    select_level_y[var_y] = pos_y
+    if i < 9:
+        pos_x += 140
+    select_level_button[var_button] = button.Button(select_level_x[var_x], select_level_y[var_y], select_level[var], 1.3)
     
 #BFS
 def selectLevel():
@@ -428,7 +431,7 @@ while True:
         #         number = 2
         #         count = 1
         #         running = "gameplay"
-        for i in range(1, 3):
+        for i in range(1, 15):
             tombol = "select_level_" + str(i) + "_button"
             # select_level_button[tombol]
             if select_level_button[tombol].draw(screen):
