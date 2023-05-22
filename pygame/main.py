@@ -109,6 +109,7 @@ number = 1
 #function gameplay
 #looping game
 count = 1
+level = 1
 active = False
 hint_cek = False
 running = "menu"
@@ -135,7 +136,6 @@ def gameplay(count, number):
     if len(user_text) == 0 and active == False:
         screen.blit(text_writeInp, ((input_rect.x + 5), (input_rect.y + 5)))
     if hint_cek == True:
-        
         screen.blit(hint, ((input_rect.x + 5), (input_rect.y + 250)))
         ans_hint = base_font.render(("->".join(wordPath[:count])), True, (45, 60, 104))
         screen.blit(ans_hint, ((input_rect.x + 5), (input_rect.y + 285)))
@@ -333,7 +333,7 @@ while True:
                 #     endWord = "Gold"
                 #     wordList = ["Lock", "Loss", "Load", "Goad", "Gold"]
                 #     wordPath = ladderLength(beginWord, endWord, wordList)
-                    
+                level = max(level, number)
                 ans = ''
                 user_text = ''
                 # screen.fill((240, 240, 240))
@@ -375,7 +375,8 @@ while True:
             count = 1
             running = "gameplay"
         elif select_level_2_button.draw(screen):
-            number = 2
-            count = 1
-            running = "gameplay"
+            if level >= 2:
+                number = 2
+                count = 1
+                running = "gameplay"
     pygame.display.update()
